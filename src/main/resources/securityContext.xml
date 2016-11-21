@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+                                 http://www.springframework.org/schema/security 
+                                 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <!--add security to service layer method eg:@Secured({"ROLE_USER"})-->
+    <global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>    
+
+    <http>
+        <!--Activated the Cross Site Request Forgery (CSRF) Protection-->
+        <!--<csrf />-->
+        
+        <!-- ====================================================== -->
+        <!-- If we have our own LoginPage. So we must -->
+        <!-- tell Spring the name and the place. -->
+        <!-- In our case we take the same page -->
+        <!-- for a error message by a failure. -->
+        <!-- Further the page after a successfully login. -->
+        <!-- ====================================================== -->
+        <form-login login-page="/login.xhtml"
+                    authentication-failure-url="/login.xhtml?login_error=1"
+                    default-target-url="/page/index.xhtml" always-use-default-target="true" />
+        
+        <custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter"/>
+        
+        <intercept-url pattern="/login.zul" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+        <intercept-url pattern="/login.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/component/*.zul" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/page/*.zul" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/page/*.xhtml" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/assets/*.css" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/assets/*.js" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/assets/*.png" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/ws/notif/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/ws/wisidx" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/ws/mainend" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <!--<intercept-url pattern="/page/index.zul" access="ROLE_ADMIN" requires-channel="https"/>-->
+        <intercept-url pattern="/page/popupadmin.zul" access="ROLE_ADMINISTRATOR" />
+                
+                
+        <!--start per page/menu role intercept-->
+        <intercept-url pattern="/page/menu/sys001.zul" access="ROLE_SYS001" />
+        <intercept-url pattern="/page/menu/sys002.zul" access="ROLE_SYS002" />
+        <intercept-url pattern="/page/menu/sys003.zul" access="ROLE_SYS003" />
+        <intercept-url pattern="/page/menu/sys004.zul" access="ROLE_SYS004" />
+        <intercept-url pattern="/page/menu/sys005.zul" access="ROLE_SYS005" />
+        <intercept-url pattern="/page/menu/sys006.zul" access="ROLE_SYS006" />
+        <intercept-url pattern="/page/menu/sys007.zul" access="ROLE_SYS007" />
+        <intercept-url pattern="/page/menu/sys008.zul" access="ROLE_ADMINISTRATOR" />
+        <intercept-url pattern="/page/menu/sys009.zul" access="ROLE_SYS009" />
+        <intercept-url pattern="/page/menu/sys013.zul" access="ROLE_ADMINISTRATOR" />
+        <intercept-url pattern="/page/menu/sys014.zul" access="ROLE_ADMINISTRATOR" />
+        <intercept-url pattern="/page/menu/sys015.zul" access="ROLE_SYS015" />
+        <intercept-url pattern="/page/menu/sys016.zul" access="ROLE_SYS016" />
+        <intercept-url pattern="/page/menu/sys017.zul" access="ROLE_SYS017" />
+        
+        <intercept-url pattern="/page/menu/acc001.zul" access="ROLE_ACC001" />
+        <intercept-url pattern="/page/menu/acc002.zul" access="ROLE_ACC002" />
+        <intercept-url pattern="/page/menu/acc003.zul" access="ROLE_ACC003" />
+        <intercept-url pattern="/page/menu/acc004.zul" access="ROLE_ACC004" />
+        <intercept-url pattern="/page/menu/acc005.zul" access="ROLE_ACC005" />
+        <intercept-url pattern="/page/menu/acc006.zul" access="ROLE_ACC006" />
+                
+        <intercept-url pattern="/page/menu/prc001.zul" access="ROLE_PRC001" />
+        <intercept-url pattern="/page/menu/prc002.zul" access="ROLE_PRC002" />
+        <intercept-url pattern="/page/menu/prc003.zul" access="ROLE_PRC003" />
+        <intercept-url pattern="/page/menu/prc004.zul" access="ROLE_PRC004" />
+        <intercept-url pattern="/page/menu/prc005.zul" access="ROLE_PRC005" />
+        <intercept-url pattern="/page/menu/prc006.zul" access="ROLE_PRC006" />
+        <intercept-url pattern="/page/menu/prc007.zul" access="ROLE_PRC007" />
+        <intercept-url pattern="/page/menu/prc008.zul" access="ROLE_PRC008" />
+        <intercept-url pattern="/page/menu/prc011.zul" access="ROLE_PRC011" />
+        <intercept-url pattern="/page/menu/prc012.zul" access="ROLE_PRC012" />
+        <intercept-url pattern="/page/menu/prc013.zul" access="ROLE_PRC013" />
+        <intercept-url pattern="/page/menu/prc014.zul" access="ROLE_PRC014" />
+        <intercept-url pattern="/page/menu/prc015.zul" access="ROLE_PRC015" />
+        <intercept-url pattern="/page/menu/prc016.zul" access="ROLE_PRC016" />
+        <intercept-url pattern="/page/menu/prc017.zul" access="ROLE_PRC017" />
+        <intercept-url pattern="/page/menu/prc018.zul" access="ROLE_PRC018" />
+        <intercept-url pattern="/page/menu/prc019.zul" access="ROLE_PRC019" />
+        <intercept-url pattern="/page/menu/prc020.zul" access="ROLE_PRC020" />
+        
+        <intercept-url pattern="/page/menu/pro001.zul" access="ROLE_PRO001" />
+        <intercept-url pattern="/page/menu/pro002.zul" access="ROLE_PRO002" />
+        
+        <intercept-url pattern="/page/menu/mkt001.zul" access="ROLE_MKT001" />       
+
+        <intercept-url pattern="/page/menu/fin001.zul" access="ROLE_FIN001" />
+        <intercept-url pattern="/page/menu/fin002.zul" access="ROLE_FIN002" />
+        <intercept-url pattern="/page/menu/fin003.zul" access="ROLE_FIN003" />
+        <intercept-url pattern="/page/menu/fin004.zul" access="ROLE_FIN004" />
+        <intercept-url pattern="/page/menu/fin005.zul" access="ROLE_FIN005" />
+        <intercept-url pattern="/page/menu/fin006.zul" access="ROLE_FIN006" />
+        <intercept-url pattern="/page/menu/fin007.zul" access="ROLE_FIN007" />
+        <intercept-url pattern="/page/menu/fin008.zul" access="ROLE_FIN008" />
+        <intercept-url pattern="/page/menu/fin009.zul" access="ROLE_FIN009" />
+        <intercept-url pattern="/page/menu/fin010.zul" access="ROLE_FIN010" />
+        <intercept-url pattern="/page/menu/fin011.zul" access="ROLE_FIN011" />
+        <intercept-url pattern="/page/menu/fin012.zul" access="ROLE_FIN012" />
+        <intercept-url pattern="/page/menu/fin013.zul" access="ROLE_FIN013" />
+
+        <intercept-url pattern="/page/menu/inv001.zul" access="ROLE_INV001" />
+        <intercept-url pattern="/page/menu/inv002.zul" access="ROLE_INV002" />
+        <intercept-url pattern="/page/menu/inv003.zul" access="ROLE_INV003" />
+        <intercept-url pattern="/page/menu/inv004.zul" access="ROLE_INV004" />
+        <intercept-url pattern="/page/menu/inv005.zul" access="ROLE_INV005" />
+        <intercept-url pattern="/page/menu/inv006.zul" access="ROLE_INV006" />
+        <intercept-url pattern="/page/menu/inv007.zul" access="ROLE_INV007" />
+        <intercept-url pattern="/page/menu/inv008.zul" access="ROLE_INV008" />
+        <intercept-url pattern="/page/menu/inv009.zul" access="ROLE_INV009" />
+        <intercept-url pattern="/page/menu/inv010.zul" access="ROLE_INV010" />
+        <intercept-url pattern="/page/menu/inv011.zul" access="ROLE_INV011" />
+        <intercept-url pattern="/page/menu/inv012.zul" access="ROLE_INV012" />
+        <intercept-url pattern="/page/menu/inv013.zul" access="ROLE_INV013" />
+        <intercept-url pattern="/page/menu/inv014.zul" access="ROLE_INV014" />
+        <intercept-url pattern="/page/menu/inv015.zul" access="ROLE_INV015" />
+        <intercept-url pattern="/page/menu/inv016.zul" access="ROLE_INV016" />
+        <intercept-url pattern="/page/menu/inv017.zul" access="ROLE_INV017" />
+        <intercept-url pattern="/page/menu/inv018.zul" access="ROLE_INV018" />
+        <intercept-url pattern="/page/menu/inv019.zul" access="ROLE_INV019" />
+        <intercept-url pattern="/page/menu/inv020.zul" access="ROLE_INV020" />
+        <intercept-url pattern="/page/menu/inv021.zul" access="ROLE_INV021" />
+        <intercept-url pattern="/page/menu/inv022.zul" access="ROLE_INV022" />
+        <intercept-url pattern="/page/menu/inv023.zul" access="ROLE_INV023" />
+        <intercept-url pattern="/page/menu/inv024.zul" access="ROLE_INV024" />
+        <intercept-url pattern="/page/menu/inv025.zul" access="ROLE_INV025" />
+        <intercept-url pattern="/page/menu/inv026.zul" access="ROLE_INV026" />
+        <intercept-url pattern="/page/menu/inv027.zul" access="ROLE_INV027" />
+        <intercept-url pattern="/page/menu/inv028.zul" access="ROLE_INV028" />
+        <intercept-url pattern="/page/menu/inv029.zul" access="ROLE_INV029" />
+        <intercept-url pattern="/page/menu/inv030.zul" access="ROLE_INV030" />
+        <intercept-url pattern="/page/menu/inv031.zul" access="ROLE_INV031" />
+        <intercept-url pattern="/page/menu/inv032.zul" access="ROLE_INV032" />
+        <intercept-url pattern="/page/menu/inv033.zul" access="ROLE_INV033" />
+        <intercept-url pattern="/page/menu/inv034.zul" access="ROLE_INV034" />
+        <intercept-url pattern="/page/menu/inv035.zul" access="ROLE_INV035" />
+        <intercept-url pattern="/page/menu/inv036.zul" access="ROLE_INV036" />
+        <intercept-url pattern="/page/menu/inv037.zul" access="ROLE_INV037" />
+        <intercept-url pattern="/page/menu/inv038.zul" access="ROLE_INV038" />
+        <intercept-url pattern="/page/menu/inv039.zul" access="ROLE_INV039" />
+        <intercept-url pattern="/page/menu/inv040.zul" access="ROLE_INV040" />
+        <intercept-url pattern="/page/menu/inv041.zul" access="ROLE_INV041" />
+        <intercept-url pattern="/page/menu/inv042.zul" access="ROLE_INV042" />
+        <intercept-url pattern="/page/menu/inv043.zul" access="ROLE_INV043" />
+        <intercept-url pattern="/page/menu/inv044.zul" access="ROLE_INV044" />
+        <intercept-url pattern="/page/menu/inv045.zul" access="ROLE_INV045" />
+        <intercept-url pattern="/page/menu/inv046.zul" access="ROLE_INV046" />
+        
+        <intercept-url pattern="/page/menu/rpt001.zul" access="ROLE_RPT001" />
+        <intercept-url pattern="/page/menu/rpt002.zul" access="ROLE_RPT002" />
+        <intercept-url pattern="/page/menu/rpt003.zul" access="ROLE_RPT003" />
+        <intercept-url pattern="/page/menu/rpt004.zul" access="ROLE_RPT004" />
+        <intercept-url pattern="/page/menu/rpt005.zul" access="ROLE_RPT005" />
+        <intercept-url pattern="/page/menu/rpt006.zul" access="ROLE_RPT006" />
+        <intercept-url pattern="/page/menu/rpt007.zul" access="ROLE_RPT007" />
+        <intercept-url pattern="/page/menu/rpt008.zul" access="ROLE_RPT008" />
+        <intercept-url pattern="/page/menu/rpt009.zul" access="ROLE_RPT009" />
+        <intercept-url pattern="/page/menu/rpt010.zul" access="ROLE_RPT010" />
+        <intercept-url pattern="/page/menu/rpt011.zul" access="ROLE_RPT011" />
+        <intercept-url pattern="/page/menu/rpt012.zul" access="ROLE_RPT012" />
+        <intercept-url pattern="/page/menu/rpt013.zul" access="ROLE_RPT013" />
+        <intercept-url pattern="/page/menu/rpt014.zul" access="ROLE_RPT014" />
+        <intercept-url pattern="/page/menu/rpt015.zul" access="ROLE_RPT015" />
+        <intercept-url pattern="/page/menu/rpt016.zul" access="ROLE_RPT016" />
+        <intercept-url pattern="/page/menu/rpt017.zul" access="ROLE_RPT017" />
+        <intercept-url pattern="/page/menu/rpt018.zul" access="ROLE_RPT018" />
+      
+        <intercept-url pattern="/page/menu/tes001.zul" access="ROLE_TES001" />
+        <intercept-url pattern="/page/menu/tes002.zul" access="ROLE_TES002" />
+        
+        <intercept-url pattern="/page/menu/mjs001.zul" access="ROLE_MJS001" />
+        <intercept-url pattern="/page/menu/mjs002.zul" access="ROLE_MJS002" />
+        
+        <intercept-url pattern="/page/menu/opr001.zul" access="ROLE_OPR001" />
+        <intercept-url pattern="/page/menu/opr002.zul" access="ROLE_OPR002" />
+        <intercept-url pattern="/page/menu/opr003.zul" access="ROLE_OPR003" />
+        <intercept-url pattern="/page/menu/opr004.zul" access="ROLE_OPR004" />
+        <intercept-url pattern="/page/menu/opr005.zul" access="ROLE_OPR005" />
+        <intercept-url pattern="/page/menu/opr006.zul" access="ROLE_OPR006" />
+        <!--</http>-->
+        
+        <!--end per page role-->
+        
+                        
+        <!--Testing logout invalidate session-->        
+        <logout 
+            invalidate-session="true" 
+            logout-success-url="/login.xhtml"
+            logout-url="/j_spring_security_logout" />      
+        
+        <session-management>
+            <!--error-if-maximum-exceeded="true"-->
+            <concurrency-control max-sessions="1"                                 
+                                 expired-url="/login.xhtml"
+                                 session-registry-alias="sessionRegistry"/> 
+        </session-management>
+       
+     
+        <remember-me remember-me-parameter="remember-me"
+                     data-source-ref="dbDataSource"
+                     token-validity-seconds="2678400" />
+
+        <headers>
+            <frame-options policy="SAMEORIGIN"/>
+        </headers>
+    </http>
+    <beans:bean id="loginFilter" class="com.waruna.isis.web.zkui.sys.WisCaptchaFilter"/>
+    <beans:bean id="requestContextFilter" class="org.springframework.web.filter.RequestContextFilter"/>
+    <!--    
+    <authentication-manager>
+        <authentication-provider user-service-ref="isisUserDetailsService"> 
+            <password-encoder hash="md5">
+                <salt-source user-property="username"/>
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+    -->
+    
+    <!--<beans:bean id="isisUserDetailsService" class="com.waruna.isis.web.zkui.sys.IsisRoleDetailService" />-->
+    
+    <!--START custom auth manager-->
+    <authentication-manager alias="authenticationManager" erase-credentials="false">
+        <authentication-provider ref="customAuthProvider"/>
+    </authentication-manager>    
+    <beans:bean id="customAuthProvider" class="com.waruna.isis.web.zkui.sys.CustomAuthProvider" />    
+    <beans:bean id="userDetailService" class="com.waruna.isis.web.zkui.sys.UserDetailService" />
+    <!--END custom auth manager-->
+    
+    <!--START persistent remember me toke base auth-->
+    <!-- Persistent Remember Me Service -->
+    <beans:bean id="rememberMeAuthenticationProvider" 
+                class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <beans:property name="key" value="oW3$947" />
+        <beans:property name="tokenRepository" ref="jdbcTokenRepository" />
+        <beans:property name="userDetailsService" ref="userDetailService" />
+    </beans:bean>  
+    <!-- Uses a database table to maintain a set of persistent login data -->
+    <beans:bean id="jdbcTokenRepository"
+                class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+        <beans:property name="createTableOnStartup" value="false" />
+        <beans:property name="dataSource" ref="dbDataSource" />
+    </beans:bean>
+    <!--END persistent remember me toke base auth-->
+</beans:beans>
