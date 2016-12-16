@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<zk xmlns="http://www.zkoss.org/2005/zul">
-
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:w="http://www.zkoss.org/2005/zk/client">        
+    <window id="login"  position="center" width="310px" 
+            mode="modal" border="normal"  sclass="z-window-not-movable"  shadow="false" 
+            closable="false" sizable="false">            
+        <caption image="/assets/image/lock.png" label="USER AUTHENTICATION" style="vertical-align: middle;padding:10px 0px 0px 2p;font-weight: bold;font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif;"/>
+        <vbox>    
+            <div align="center" >
+                <label id="err" value="${SPRING_SECURITY_LAST_EXCEPTION.message}" sclass="errmsg" action="show: slideUp"/>
+            </div>
+            <hbox>                
+                <h:form id="loginform" name="loginform" action="j_spring_security_check" method="POST">
+                    <grid >
+                        <columns>
+                            <column width="90px"/>
+                            <column/>
+                        </columns>
+                        <rows >
+                            <row>Username
+                                <textbox id="username" name="j_username" width="99%"  maxlength="30" onOK="password.focus()" focus="true" constraint="no empty:username cant empty."/>
+                            </row>
+                            <row>Password
+                                <textbox id="password" name="j_password" width="99%" maxlength="30" type="password" onOK="btnLogin.focus()" constraint="no empty:Password cant empty." />
+                            </row>                            
+                            <row spans="2" align="center">
+                                <borderlayout height="30px" width="100%">
+                                    <west border="none" >
+                                    </west>
+                                    <center  border="none" >                                        
+                                    </center>
+                                    <east border="none">                                        
+                                        <button type="submit" id="btnLogin" label="Login" height="30px" width="100px" autodisable="self"/>
+                                    </east>
+                                </borderlayout>
+                            </row>
+                        </rows>
+                    </grid>
+                </h:form>               
+            </hbox>
+        </vbox>            
+    </window>
 </zk>
+

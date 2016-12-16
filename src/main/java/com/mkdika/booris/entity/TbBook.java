@@ -72,9 +72,11 @@ public class TbBook implements Serializable {
 
     /*
         Record logging field
+        Uni-directional relation to class TbBookAuthor
      */
-    @Column(name = "inputby")
-    private String inputby;
+    @JoinColumn(name = "inputby", referencedColumnName = "uid")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TbUser inputby;
 
     @Column(name = "inputdt")
     @Temporal(TemporalType.TIMESTAMP)
@@ -145,15 +147,7 @@ public class TbBook implements Serializable {
 
     public void setBookauthor(TbBookAuthor bookauthor) {
         this.bookauthor = bookauthor;
-    }
-
-    public String getInputby() {
-        return inputby;
-    }
-
-    public void setInputby(String inputby) {
-        this.inputby = inputby;
-    }
+    }  
 
     public Date getInputdate() {
         return inputdate;
@@ -162,4 +156,12 @@ public class TbBook implements Serializable {
     public void setInputdate(Date inputdate) {
         this.inputdate = inputdate;
     }
+
+    public TbUser getInputby() {
+        return inputby;
+    }
+
+    public void setInputby(TbUser inputby) {
+        this.inputby = inputby;
+    }        
 }

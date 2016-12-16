@@ -2,7 +2,7 @@
 <zk>
     <preference>
         <name>org.zkoss.zk.ui.WebApp.name</name>
-        <value>Zk MVVM Crud</value>
+        <value>Booris</value>
     </preference>
             
     <device-config>
@@ -87,6 +87,5 @@
         <value>false</value>
     </library-property>
     
-    <disable-event-thread>false</disable-event-thread>         
-                       
+    <disable-event-thread>false</disable-event-thread>                       
 </zk>

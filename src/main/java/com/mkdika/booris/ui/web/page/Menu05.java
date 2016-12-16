@@ -7,9 +7,9 @@ import org.zkoss.bind.annotation.Init;
  *
  * @author maikel
  */
-public class Menu03 extends CrudFormTemplate {
+public class Menu05 extends CrudFormTemplate {
     
-     public Menu03() {
+    public Menu05() {
 
     }
 

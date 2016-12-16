@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -58,10 +60,12 @@ public class TbBookAuthor implements Serializable {
 
     /*
         Record logging field
+        Uni-directional relation to class TbBookAuthor
      */
-    @Column(name = "inputby")
-    private String inputby;
-    
+    @JoinColumn(name = "inputby", referencedColumnName = "uid")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TbUser inputby;
+
     @Column(name = "inputdt")
     @Temporal(TemporalType.TIMESTAMP)
     public Date inputdate;
@@ -109,11 +113,11 @@ public class TbBookAuthor implements Serializable {
         this.books = books;
     }
 
-    public String getInputby() {
+    public TbUser getInputby() {
         return inputby;
     }
 
-    public void setInputby(String inputby) {
+    public void setInputby(TbUser inputby) {
         this.inputby = inputby;
     }
 

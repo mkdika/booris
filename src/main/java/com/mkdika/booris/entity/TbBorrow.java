@@ -70,9 +70,11 @@ public class TbBorrow implements Serializable {
     
     /*
         Record logging field
-    */
-    @Column(name = "inputby")
-    private String inputby;
+        Uni-directional relation to class TbBookAuthor
+     */
+    @JoinColumn(name = "inputby", referencedColumnName = "uid")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TbUser inputby;
     
     @Column(name = "inputdt")
     @Temporal(TemporalType.TIMESTAMP)
@@ -129,14 +131,14 @@ public class TbBorrow implements Serializable {
         this.borrowBookList = borrowBookList;
     }
 
-    public String getInputby() {
+    public TbUser getInputby() {
         return inputby;
     }
 
-    public void setInputby(String inputby) {
+    public void setInputby(TbUser inputby) {
         this.inputby = inputby;
     }
-
+   
     public Date getInputdate() {
         return inputdate;
     }

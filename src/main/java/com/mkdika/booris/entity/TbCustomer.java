@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,9 +49,11 @@ public class TbCustomer implements Serializable {
 
     /*
         Record logging field
+        Uni-directional relation to class TbBookAuthor
      */
-    @Column(name = "inputby")
-    private String inputby;
+    @JoinColumn(name = "inputby", referencedColumnName = "uid")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TbUser inputby;
 
     @Column(name = "inputdt")
     @Temporal(TemporalType.TIMESTAMP)
@@ -89,11 +94,11 @@ public class TbCustomer implements Serializable {
         this.disable = disable;
     }
 
-    public String getInputby() {
+    public TbUser getInputby() {
         return inputby;
     }
 
-    public void setInputby(String inputby) {
+    public void setInputby(TbUser inputby) {
         this.inputby = inputby;
     }
 
