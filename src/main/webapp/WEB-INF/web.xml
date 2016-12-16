@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <description>Zk MVVM Crud</description>
-    <display-name>ZK MVVM CRUD</display-name>
+    <description>Booris</description>
+    <display-name>Booris</display-name>
     
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:applicationContext.xml           
+            classpath:applicationContext.xml
+            classpath:securityContext.xml
         </param-value>
     </context-param>    
              
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>                        
-    </listener> 
+    </listener>
+    
+    <!--Begion of Spring Security 3.x Configuration-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>                         
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>                          
+    </filter>       
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>            
+    </filter-mapping>
+    <listener>
+        <listener-class>
+            org.springframework.security.web.session.HttpSessionEventPublisher
+        </listener-class>
+    </listener>
+    <!--End of Sprint Security 3.x Configuration--> 
 
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>

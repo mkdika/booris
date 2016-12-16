@@ -17,6 +17,11 @@ public class TestCLI {
             System.out.println("Truncate existing DB Data done!");
         }
         System.out.println("");
+        
+        // CREATE DEFAULT USER
+        // USER: admin
+        // PASSWORD: admin
+        AppUtil.getService().createDefaultUser();
 
     }
 }

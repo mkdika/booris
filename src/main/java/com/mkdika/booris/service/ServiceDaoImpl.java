@@ -4,6 +4,7 @@ import com.mkdika.booris.entity.TbBook;
 import com.mkdika.booris.entity.TbBookAuthor;
 import com.mkdika.booris.entity.TbBorrow;
 import com.mkdika.booris.entity.TbCustomer;
+import com.mkdika.booris.entity.TbUser;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -104,5 +105,44 @@ public class ServiceDaoImpl implements ServiceDao {
         List<TbBorrow> list = getCurrentSession()
                 .createQuery("FROM TbBorrow a ORDER BY a.transactionDate ASC").list();
         return list;
+    }
+
+    @Override
+    public List<TbUser> getTbUsers() {
+        List<TbUser> list = getCurrentSession()
+                .createQuery("FROM TbUser a ORDER BY a.uid ASC").list();
+        return list;
+    }
+
+    @Override
+    public TbUser getTbUserActiveByUid(String uid) {
+        List<TbUser> list = getCurrentSession()
+                .createQuery("FROM TbUser a WHERE a.uid = :uid AND a.disable = false")
+                .setParameter("uid", uid)
+                .list();
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public boolean createDefaultUser() {
+        if (getTbUserActiveByUid("admin") == null) {
+            TbUser t = new TbUser();
+            t.setUid("admin");
+            t.setPassword("ceb4f32325eda6142bd65215f4c0f371"); // admin
+            t.setDisable(false);
+            t.setAccessMenu01(true);
+            t.setAccessMenu02(true);
+            t.setAccessMenu03(true);
+            t.setAccessMenu04(true);
+            t.setAccessMenu05(true);
+            save(t);
+            return true;
+        }
+        return false;
     }
 }

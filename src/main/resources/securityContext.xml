@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -24,9 +23,7 @@
         <!-- ====================================================== -->
         <form-login login-page="/login.zul"
                     authentication-failure-url="/login.zul?login_error=1"
-                    default-target-url="/page/mainpage.zul" always-use-default-target="true" />
-        
-        <custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter"/>
+                    default-target-url="/page/mainpage.zul" always-use-default-target="true" />               
         
         <intercept-url pattern="/login.zul" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
         <intercept-url pattern="/assets/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -34,10 +31,20 @@
         <intercept-url pattern="/page/mainpage.zul" access="ROLE_DEFAULT" />
                                         
         <!--start per page/menu role intercept-->
+        <!-- MENU01 - User Management -->
         <intercept-url pattern="/page/menu01.zul" access="ROLE_MENU01" />
+        
+        <!-- MENU02 - Register Author -->
         <intercept-url pattern="/page/menu02.zul" access="ROLE_MENU02" />
+        
+        <!-- MENU03 - Register Book -->
         <intercept-url pattern="/page/menu03.zul" access="ROLE_MENU03" />
+        
+        <!-- MENU04 - Register Customer -->
         <intercept-url pattern="/page/menu04.zul" access="ROLE_MENU04" />        
+        
+        <!-- MENU05 - Borrow Book -->
+        <intercept-url pattern="/page/menu05.zul" access="ROLE_MENU05" />        
         <!--</http>-->
         
         <!--end per page role-->
@@ -67,8 +74,7 @@
     <authentication-manager alias="authenticationManager" erase-credentials="false">
         <authentication-provider ref="customAuthProvider"/>
     </authentication-manager>    
-    <beans:bean id="customAuthProvider" class="com.waruna.isis.web.zkui.sys.CustomAuthProvider" />    
-    <beans:bean id="userDetailService" class="com.waruna.isis.web.zkui.sys.UserDetailService" />
-    <!--END custom auth manager-->
-            
+    <beans:bean id="customAuthProvider" class="com.mkdika.booris.ui.web.config.CustomAuthProvider" />    
+    <beans:bean id="userDetailService" class="com.mkdika.booris.ui.web.config.UserDetailService" />
+    <!--END custom auth manager-->            
 </beans:beans>
