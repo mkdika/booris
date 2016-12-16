@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
-        Welcome
+    <style>        
+        body {margin: 0px;padding: 0px;}
+        .z-window-content {padding: 0px !important;}
+    </style>
+    <window id="mainpage" closable="false" shadow="false" border="normal" width="100%" height="100%"
+            position="center" style="padding: 0px 0px 0px 0px;"
+            apply="org.zkoss.bind.BindComposer" 
+            validationMessages="@id('vmsgs')" 
+            viewModel="@id('vm') @init('com.mkdika.booris.ui.web.page.MainPageVm')" >            
+        <caption id="caption" label="@load(vm.appInfo)"
+                 style="margin: 0px 0px 0px 10px;vertical-align: middle;padding:0px 15px 0px 0px;font-weight: bold;font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif;color:#333;"/>
+        <borderlayout height="100%">
+            <west size="150px" border="0" flex="true" splittable="true" margins="0,0,0,0">
+                <vlayout>
+                    <label id="home" value="[Home]" style="cursor: pointer;font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif;color:#00f;"
+                            onClick="@command('openHome')"/>                    
+                    <label id="mn01" value="- Register User" style="cursor: pointer;" visible="@load(vm.menu01)"
+                            onClick="@command('openMenu01')"/> 
+                    <label id="mn02" value="- Register Author" style="cursor: pointer;" visible="@load(vm.menu02)"
+                            onClick="@command('openMenu02')"/> 
+                    <label id="mn03" value="- Register Book" style="cursor: pointer;" visible="@load(vm.menu03)"
+                            onClick="@command('openMenu03')"/> 
+                    <label id="mn04" value="- Register Customer" style="cursor: pointer;" visible="@load(vm.menu04)"
+                            onClick="@command('openMenu04')"/> 
+                    <label id="mn05" value="- Borrow Book" style="cursor: pointer;" visible="@load(vm.menu05)"
+                            onClick="@command('openMenu05')"/> 
+                    <separator/>
+                    <label id="logout" value="[Logout]" style="cursor: pointer;font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif;color:#00f;"
+                            onClick="@command('logout')"/>
+                </vlayout>
+            </west>
+            <center>
+                <include src="@load(vm.selectedMenu)" />
+            </center>
+        </borderlayout>                        
     </window>
 </zk>

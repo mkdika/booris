@@ -1,21 +1,20 @@
 package com.mkdika.booris.ui.web.page;
 
-import com.mkdika.booris.ui.web.template.CrudFormTemplate;
 import org.zkoss.bind.annotation.Init;
 
 /**
  *
  * @author maikel
  */
-public class Menu03 extends CrudFormTemplate {
+public class HomeVm {
     
-     public Menu03() {
-
+    public HomeVm() {
+        
     }
-
-    @Init()
+    
+    @Init
     public void init() {
-
+        
     }
     
 }

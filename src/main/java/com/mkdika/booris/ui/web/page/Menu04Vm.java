@@ -7,14 +7,15 @@ import org.zkoss.bind.annotation.Init;
  *
  * @author maikel
  */
-public class Menu02 extends CrudFormTemplate {
+public class Menu04Vm extends CrudFormTemplate {
     
-    public Menu02() {
+    public Menu04Vm() {
 
     }
 
     @Init()
     public void init() {
 
-    }        
+    }
+    
 }

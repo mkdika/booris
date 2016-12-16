@@ -29,9 +29,10 @@
         <intercept-url pattern="/assets/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/template/*.zul" access="ROLE_DEFAULT" />
         <intercept-url pattern="/page/mainpage.zul" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/page/home.zul" access="ROLE_DEFAULT" />
                                         
         <!--start per page/menu role intercept-->
-        <!-- MENU01 - User Management -->
+        <!-- MENU01 - Register User -->
         <intercept-url pattern="/page/menu01.zul" access="ROLE_MENU01" />
         
         <!-- MENU02 - Register Author -->

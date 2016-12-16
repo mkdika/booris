@@ -31,7 +31,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
 
         TbUser t = serviceDao.getTbUserActiveByUid(uid);
-
+               
         if (t == null) {
             throw new BadCredentialsException("Username not found/not actived.");
         } else {
