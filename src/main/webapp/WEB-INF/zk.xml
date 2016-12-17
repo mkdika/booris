@@ -34,7 +34,7 @@
     <session-config>        
         <device-type>ajax</device-type>
         <automatic-timeout>true</automatic-timeout>
-        <timeout-uri>/timeout.jsp</timeout-uri>
+        <timeout-uri>/login.zul</timeout-uri>
         <!--
             to protect user from open multi tab browser access.
             max=2, for main desktop session & openen popup session.

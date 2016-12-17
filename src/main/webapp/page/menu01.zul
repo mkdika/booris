@@ -8,6 +8,7 @@
         <caption id="caption" label=">> [MENU01] Register User"
                  style="margin: 0px 0px 0px 10px;vertical-align: middle;padding:0px 15px 0px 0px;font-size: 9pt; font-family: Verdana, Arial, Helvetica, sans-serif;color:#000;"/>
         <include src="/template/CrudFormTemplate.zul"/>
+        <button label="PUSH ME!" onClick="@command('pushme')" />
     </window>
 
 </zk>

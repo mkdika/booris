@@ -30,6 +30,7 @@
         <intercept-url pattern="/template/*.zul" access="ROLE_DEFAULT" />
         <intercept-url pattern="/page/mainpage.zul" access="ROLE_DEFAULT" />
         <intercept-url pattern="/page/home.zul" access="ROLE_DEFAULT" />
+        <intercept-url pattern="/component/popmsg.zul" access="ROLE_DEFAULT" />
                                         
         <!--start per page/menu role intercept-->
         <!-- MENU01 - Register User -->
@@ -76,6 +77,6 @@
         <authentication-provider ref="customAuthProvider"/>
     </authentication-manager>    
     <beans:bean id="customAuthProvider" class="com.mkdika.booris.ui.web.config.CustomAuthProvider" />    
-    <beans:bean id="userDetailService" class="com.mkdika.booris.ui.web.config.UserDetailService" />
+    <beans:bean id="userDetailSeuthPrvice" class="com.mkdika.booris.ui.web.config.UserDetailService" />
     <!--END custom auth manager-->            
 </beans:beans>

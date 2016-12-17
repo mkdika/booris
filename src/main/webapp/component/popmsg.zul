@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+<window id="popmsg" closable="false" shadow="false" border="normal" width="400px" height="300px"
+            position="center" style="padding: 0px 0px 0px 0px;"
+            apply="org.zkoss.bind.BindComposer"  mode="modal"
+            validationMessages="@id('vmsgs')" 
+            viewModel="@id('vm') @init('com.mkdika.booris.ui.web.component.Popmsg')" >            
+        <caption id="caption" label="Popup Message"
+                 style="margin: 0px 0px 0px 10px;vertical-align: middle;padding:0px 15px 0px 0px;font-size: 9pt; font-family: Verdana, Arial, Helvetica, sans-serif;color:#000;"/>
+        <label value="@load(vm.message)"/>
+    </window>
+</zk>
