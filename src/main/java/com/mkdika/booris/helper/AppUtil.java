@@ -18,6 +18,9 @@ public class AppUtil {
 
     // HANYA DIGUNAKAN UNTUK PEMANGILAN DI UI.WEB
     private static ServiceDao webService;
+    
+    // TESTING LOAD SYSTEM ENVIRONMENT VARIABLE
+    private static SystemVariable systemVariable;
 
     /*
     HANYA DIGUNAKAN UNTUK PEMANGILAN DI UI.WEB
@@ -68,5 +71,12 @@ public class AppUtil {
 
     public static void msgJs(String msg) {
         Clients.evalJavaScript("alert('" + msg + "')");
+    }
+    
+    public static SystemVariable getSystemVariable() {
+        if (systemVariable == null) {
+            systemVariable = (SystemVariable) SpringUtil.getBean("systemVariable");
+        }
+        return systemVariable;
     }
 }

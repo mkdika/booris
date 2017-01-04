@@ -33,7 +33,7 @@ public class MainPageVm {
         // Visible authorized menu
         if (tbuser != null) {
             Sessions.getCurrent().setAttribute("user", tbuser);
-            setAppInfo(getAppInfo()+" - USER: " + user.getUsername());
+            setAppInfo(getAppInfo()+" - USER: " + user.getUsername() + " (JAVA_HOME:"+AppUtil.getSystemVariable().getJavaHome()+") " + AppUtil.getSystemVariable().getBoorisPath());
             
             setMenu01(tbuser.getAccessMenu01());
             setMenu02(tbuser.getAccessMenu02());

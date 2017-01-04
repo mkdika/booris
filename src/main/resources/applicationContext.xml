@@ -61,5 +61,13 @@
     
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
-    </bean>            
+    </bean>  
+    
+    <!--testing get system environment variable JAVA_HOME-->
+    <bean id="systemVariable" class="com.mkdika.booris.helper.SystemVariable" >
+        <property name="javaHome" value="#{systemEnvironment['JAVA_HOME']}" />
+        <property name="boorisPath" value="#{systemEnvironment['BOORIS_PATH']}" />
+    </bean>    
+    
+    
 </beans>
